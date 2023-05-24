@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: black;
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        width: 20%;
+        height: 64vh;
+        border-radius: 20px;
+        background-color: rgb(190, 190, 190);
+        box-shadow: 20px 20px rgb(103, 103, 103);
+        padding: 10px;
+        font-weight: bolder;
+        text-align: left;
+    }
+
+    .content input {
+        margin-top: 6px;
+    }
+
+    .content h3{
+        text-align: center;
+    }
+
+    .content p, .gender{
+        margin-left: 20px;
+    }
+
+    .container .bar {
+        width: 86%;
+        border-radius: 6px;
+        border: none;
+        padding: 4px;
+    }
+
+    button{
+ 
+        border: none;
+        border-radius: 14px;
+        padding: 14px;
+    }
+
+    .btn{
+        text-align: center;
+    }
+    @media only screen and (max-width: 600px) {
+        .content{
+            width: 40%;
+        }
+    }
+    @media only screen and (max-width: 960px) {
+        .content{
+            width: 40%;
+        }
+    }
+
+</style>
+<body>
+    <main>
+        <h1>BMI CALCULATOR</h1>
+        <div class="container">
+            <div class="content">
+                <h3>METRIC UNITS</h3>
+                <p>Age<br><input type="number" id="age" class="bar"></p>
+                <p>What is your gender?</p>
+                <div class="genders" id="genders">
+                    <input class="gender" type="radio" name="gender" value="male" id="male"> Male
+                    <input class="gender" type="radio" name="gender" value="female" id="female"> Female</p>
+                </div>
+                  
+                <p>Height<br> <input type="number" id="height" class="bar" placeholder="CM" ></p> 
+                <p>Weight<br> <input type="number" id="weight" class="bar" placeholder="KG" ></p>
+                <div class="btn">
+                    <button class="hitung" id="hitung">
+                            hitung
+                    </button>
+                </div>
+                <div id="result"></div>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    const btnHitung = document.querySelector(".hitung");
+    btnHitung.addEventListener('click', function(){
+        const age = document.getElementById("age").value;
+        const height = document.getElementById("height").value;
+        const weight = document.getElementById("weight").value;
+        
+        // Lakukan perhitungan BMI
+        const bmi = weight / ((height / 100) ** 2);
+
+        // Tentukan keterangan BMI
+        let keterangan = "";
+        if (bmi < 18.5) {
+            keterangan = "Underweight";
+        } else if (bmi >= 18.5 && bmi < 25) {
+            keterangan = "Normal";
+        } else {
+            keterangan = "Overweight";
+        }
+
+        // Tampilkan hasil perhitungan dan keterangan pada layar
+        const resultElement = document.getElementById("result");
+        resultElement.innerHTML = `<p>Your BMI is: ${bmi.toFixed(2)}</p><p>${keterangan}</p>`;
+        resultElement.style.background = "black";
+        resultElement.style.color = "white";
+        resultElement.style.padding = "4px";
+        resultElement.style.borderRadius = "14px";
+        resultElement.style.position = "relative";
+        resultElement.style.top = "50px";
+
+
+    });
+</script>
+
+</html>
